@@ -1,4 +1,6 @@
 from config.dbconnect import db
+from .cerditcard import CreditCard
+from .virtualwallet import VirtualWallet
 
 
 class Users(db.Document):
@@ -7,4 +9,5 @@ class Users(db.Document):
     documentType = db.StringField(required=True, choices=['RG', 'CPF'])
     documentNumber = db.StringField(required=True)
     paymentMethod = db.StringField(required=True)
-    paymentData = db.ListField(required=True)
+    creditCard = db.EmbeddedDocumentField(CreditCard)
+    virtualWallet = db.EmbeddedDocumentField(VirtualWallet)
